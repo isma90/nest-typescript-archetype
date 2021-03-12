@@ -1,5 +1,4 @@
-import { Controller, Get, Inject, Req } from '@nestjs/common';
-import { Request } from 'express';
+import { Body, Controller, Get, Inject, Post, Query } from '@nestjs/common';
 import { ExampleService } from '../service';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
@@ -21,8 +20,14 @@ export class ExampleController {
   }
 
   @Get('params')
-  params(@Req() request: Request) {
-    this.logger.debug('INFO: ' + request);
-    return '';
+  query(@Query('v') v) {
+    this.logger.debug(`INFO:  ${v}`);
+    return v;
+  }
+
+  @Post('params')
+  body(@Body() hola: any) {
+    this.logger.debug(`INFO:  ${hola}`);
+    return hola;
   }
 }
