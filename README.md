@@ -22,6 +22,10 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+#Docker
+$ docker build -t nest-typescript:1.0.0 .
+$ docker run nest-typescript:1.0.0
 ```
 
 ## Test
