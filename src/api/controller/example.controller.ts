@@ -15,8 +15,8 @@ export class ExampleController {
   }
 
   @Get('get-all')
-  getAll() {
-    return this.message;
+  async getAll() {
+    return await this.exampleService.some();
   }
 
   @Get('params')
