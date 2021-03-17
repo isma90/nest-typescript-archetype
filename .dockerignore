@@ -1,6 +1,5 @@
 .eslintrc.js
 .prettierrc
-.env
 README.md
 yarn.lock
 test
