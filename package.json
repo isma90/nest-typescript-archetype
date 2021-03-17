@@ -26,6 +26,7 @@
     "@nestjs/config": "^0.6.3",
     "@nestjs/core": "^7.6.13",
     "@nestjs/platform-express": "^7.6.13",
+    "@supercharge/request-ip": "^1.1.2",
     "dotenv": "^8.2.0",
     "nest-winston": "^1.4.0",
     "nestjs-redis": "^1.2.8",
