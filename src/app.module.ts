@@ -1,6 +1,10 @@
-import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { AppService, ExampleService } from './api/service';
-import { AppController, ExampleController } from './api/controller';
+import { MiddlewareConsumer, Module, HttpModule } from '@nestjs/common';
+import { AppService, ExampleService, SecondService } from './api/service';
+import {
+  AppController,
+  ExampleController,
+  SecondController,
+} from './api/controller';
 import { ConfigModule } from '@nestjs/config';
 import { WinstonModule } from 'nest-winston';
 import { LoggerConfig, RedisConfig } from './api/factory';
@@ -15,9 +19,10 @@ const redisOptions: RedisConfig = new RedisConfig();
     ConfigModule.forRoot(),
     WinstonModule.forRoot(logger.console()),
     RedisModule.register(redisOptions.getOptions()),
+    HttpModule,
   ],
-  controllers: [AppController, ExampleController],
-  providers: [AppService, ExampleService],
+  controllers: [AppController, ExampleController, SecondController],
+  providers: [AppService, ExampleService, SecondService],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
