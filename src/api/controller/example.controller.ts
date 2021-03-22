@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Inject, Post, Query } from '@nestjs/common';
-import { ExampleService } from '../service';
+import { ExampleService, SecondService } from '../service';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
 
@@ -9,6 +9,7 @@ export class ExampleController {
 
   constructor(
     private readonly exampleService: ExampleService,
+    private readonly secondService: SecondService,
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
   ) {
     this.message = 'aloha';
@@ -16,7 +17,12 @@ export class ExampleController {
 
   @Get('get-all')
   async getAll() {
-    return await this.exampleService.some();
+    const exampleData = await this.exampleService.some();
+    const otherData = await this.secondService.getOtherData();
+    return {
+      exampleData,
+      otherData,
+    };
   }
 
   @Get('params')
